@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  :root {
+    --background: 240 10% 99%; /* slate-50 / #fafafa */
+    --foreground: 222 47% 11%; /* slate-900 */
+    --muted: 220 13% 91%; /* slate-200 */
+    --muted-foreground: 215 25% 34%; /* slate-600 */
+    --popover: 240 10% 99%;
+    --popover-foreground: 222 47% 11%;
+    --card: 240 10% 99%;
+    --card-foreground: 222 47% 11%;
+    --border: 220 13% 91%; /* slate-200 */
+    --input: 220 13% 91%;
+    --primary: 222 47% 11%; /* slate-900 */
+    --primary-foreground: 0 0% 98%; /* slate-50 */
+    --secondary: 220 14% 96%; /* slate-100 */
+    --secondary-foreground: 222 47% 11%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 222 47% 11%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 222 47% 11%; /* slate-900 */
+    --foreground: 0 0% 98%; /* slate-50 */
+    --muted: 223 47% 18%; /* slate-800 */
+    --muted-foreground: 215 20% 65%; /* slate-400 */
+    --popover: 222 47% 11%;
+    --popover-foreground: 0 0% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 0 0% 98%;
+    --border: 223 47% 18%; /* slate-800 */
+    --input: 223 47% 18%;
+    --primary: 0 0% 98%; /* slate-50 */
+    --primary-foreground: 222 47% 11%; /* slate-900 */
+    --secondary: 223 47% 18%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 223 47% 18%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 0 0% 98%;
+  }
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    text-rendering: optimizeLegibility;
+  }
+}
+@layer components {
+  /* Button System */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50;
+  }
+  .btn-gradient {
+    @apply btn text-white shadow-primary hover:shadow-glow hover:scale-105 active:scale-95;
+    background: linear-gradient(135deg, #F38020 0%, #E55A1B 100%);
+  }
+  /* Gradient System */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #F38020 0%, #E55A1B 50%, #D14615 100%);
+  }
+  .bg-gradient-rainbow {
+    background: linear-gradient(135deg, #F38020 0%, #E55A1B 25%, #D14615 50%, #ff6b35 100%);
+  }
+  /* Text System */
+  .text-gradient {
+    background: linear-gradient(90deg, #F38020 0%, #E55A1B 50%, #D14615 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* Glass Morphism */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-glass;
+  }
+  .glass-dark {
+    @apply bg-black/10 backdrop-blur-md border border-white/10 shadow-glass;
+  }
+  /* Interactive Effects */
+  .floating {
+    animation: float 2s ease-in-out infinite;
+  }
+  .rotating {
+    animation: rotate 2s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(-4px);
+    }
+    50% {
+      transform: translateY(4px);
+    }
+  }
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .shimmer-bg {
+    @apply relative overflow-hidden;
+  }
+  .shimmer-bg::before {
+    @apply absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    content: '';
+  }
+  /* Layout Utilities */
+  .center {
+    @apply flex items-center justify-center;
+  }
+  .center-col {
+    @apply flex flex-col items-center justify-center;
+  }
+  /* Responsive Typography */
+  .text-display {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-tight;
+  }
+  .text-body {
+    @apply text-base sm:text-lg text-muted-foreground leading-relaxed;
+  }
+}
